@@ -89,6 +89,24 @@ No Kibana:
 
 Depois use Discover para filtrar eventos.
 
+## Importar dashboard pronto
+
+O dashboard exportado do Kibana está versionado em:
+
+```txt
+dashboards/kibana-dashboard.ndjson
+```
+
+Para importar em outra máquina:
+
+1. Abra o Kibana.
+2. Vá em **Stack Management → Saved Objects**.
+3. Clique em **Import**.
+4. Selecione `dashboards/kibana-dashboard.ndjson`.
+5. Confirme a importação.
+
+O arquivo inclui o Data View `so-logs-*` e o dashboard **Dashboard - Gestão de Logs Centralizada com ELK**.
+
 ## Consultas úteis no Kibana
 
 HTTP:
