@@ -1,0 +1,27 @@
+filebeat.inputs:
+  - type: filestream
+    id: nginx-access
+    enabled: true
+    paths:
+      - /var/log/nginx/access.log
+    fields:
+      log_type: nginx_access
+      project: so-elk-centralized-logs
+    fields_under_root: false
+
+  - type: filestream
+    id: simulated-auth
+    enabled: true
+    paths:
+      - /sample-logs/auth.log
+    fields:
+      log_type: simulated_auth
+      project: so-elk-centralized-logs
+    fields_under_root: false
+
+processors:
+  - add_host_metadata: ~
+  - add_docker_metadata: ~
+
+output.logstash:
+  hosts: ["logstash:5044"]

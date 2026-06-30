@@ -1,0 +1,4 @@
+Jun 30 09:00:01 notebook-demo sshd[1201]: Failed password for invalid user admin from 192.168.56.10 port 54321 ssh2
+Jun 30 09:01:11 notebook-demo sshd[1202]: Failed password for invalid user root from 192.168.56.11 port 54322 ssh2
+Jun 30 09:02:25 notebook-demo sshd[1203]: Accepted password for henrique from 192.168.56.1 port 54323 ssh2
+Jun 30 09:03:44 notebook-demo sudo: henrique : TTY=pts/0 ; PWD=/home/henrique ; USER=root ; COMMAND=/usr/bin/systemctl status ssh
