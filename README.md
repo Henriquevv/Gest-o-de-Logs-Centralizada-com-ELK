@@ -510,11 +510,26 @@ docker compose down -v
     └── restore.sh
 ```
 
-## Pontos para explicar na apresentação
+## Fechamento e apresentação
+
+Documentos finais de apoio:
+
+```txt
+docs/checklist-fechamento.md
+docs/plano-apresentacao.md
+```
+
+Veredito atual: **o trabalho pode ser fechado nesse formato**, desde que a apresentação explique honestamente que os containers simulam máquinas separadas da rede.
+
+Pontos para explicar:
 
 - Filebeat representa o agente coletor instalado nas máquinas clientes.
-- Logstash recebe eventos na porta 5044 e extrai campos importantes.
+- Logstash recebe eventos na porta `5044` e extrai campos importantes.
 - Elasticsearch centraliza e indexa os logs.
 - Kibana permite auditoria visual e busca rápida.
 - Nginx e `auth.log` simulam fontes reais de logs do Linux.
 - Docker Compose garante reprodutibilidade: o professor ou outro integrante consegue subir o mesmo laboratório em outra máquina.
+
+Frase de defesa:
+
+> Em produção, o Filebeat ficaria instalado em várias máquinas Linux. Neste laboratório, usamos containers separados em uma rede Docker para reproduzir a mesma arquitetura lógica de coleta, processamento, armazenamento e visualização.
