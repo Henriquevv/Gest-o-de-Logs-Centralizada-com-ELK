@@ -1,0 +1,7 @@
+Jul 12 15:40:01 notebook-demo systemd[1]: Started nginx.service - Web Server.
+Jul 12 15:40:12 notebook-demo systemd[1]: Started filebeat.service - Filebeat agent.
+Jul 12 15:41:08 notebook-demo kernel: [12345.678901] WARNING: high memory usage detected by elasticsearch
+Jul 12 15:41:44 notebook-demo systemd[1]: logstash.service: Consumed 2.314s CPU time.
+Jul 12 15:42:03 notebook-demo cron[2401]: INFO: backup job finished successfully
+Jul 12 15:42:25 notebook-demo systemd[1]: Failed to start fake-backup.service - Simulated failing service.
+Jul 12 15:43:10 notebook-demo kernel: [12377.123456] WARNING: possible disk latency spike on /dev/sda

@@ -74,12 +74,16 @@ Total retornado pela busca:
 
 Eventos recentes incluem:
 
+- `nginx_access`;
 - `simulated_auth`;
+- `simulated_syslog`;
+- `simulated_app`;
 - falhas SSH com `Failed password`;
 - usuários como `oracle`, `postgres`, `test`;
 - evento de login aceito;
 - evento `sudo`;
-- logs HTTP gerados pelo Nginx.
+- logs HTTP gerados pelo Nginx;
+- logs de sistema e aplicação/API simulados.
 
 ---
 

@@ -19,6 +19,26 @@ filebeat.inputs:
       project: so-elk-centralized-logs
     fields_under_root: false
 
+  - type: filestream
+    id: simulated-syslog
+    enabled: true
+    paths:
+      - /sample-logs/syslog.log
+    fields:
+      log_type: simulated_syslog
+      project: so-elk-centralized-logs
+    fields_under_root: false
+
+  - type: filestream
+    id: simulated-app
+    enabled: true
+    paths:
+      - /sample-logs/app.log
+    fields:
+      log_type: simulated_app
+      project: so-elk-centralized-logs
+    fields_under_root: false
+
 processors:
   - add_host_metadata: ~
   - add_docker_metadata: ~

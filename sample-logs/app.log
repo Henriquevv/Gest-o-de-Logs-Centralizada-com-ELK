@@ -1,0 +1,5 @@
+{"level":"INFO","service":"api-gateway","route":"/api/login","status":200,"latency_ms":42,"client_ip":"172.16.0.10","message":"login page loaded"}
+{"level":"WARN","service":"api-gateway","route":"/api/admin","status":403,"latency_ms":31,"client_ip":"203.0.113.10","message":"admin route denied"}
+{"level":"ERROR","service":"orders-api","route":"/api/orders","status":500,"latency_ms":310,"client_ip":"172.16.0.22","message":"database timeout simulated"}
+{"level":"INFO","service":"orders-api","route":"/api/orders","status":201,"latency_ms":88,"client_ip":"172.16.0.22","message":"order created"}
+{"level":"WARN","service":"api-gateway","route":"/api/wp-admin","status":404,"latency_ms":19,"client_ip":"198.51.100.77","message":"suspicious route scan"}

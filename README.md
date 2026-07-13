@@ -8,6 +8,8 @@ Ambiente Docker reproduzível para demonstrar centralização de logs com:
 - Filebeat: agente coletor
 - Nginx: serviço de exemplo que gera logs HTTP
 - `sample-logs/auth.log`: logs Linux/SSH simulados para auditoria
+- `sample-logs/syslog.log`: logs de sistema simulados
+- `sample-logs/app.log`: logs JSON de aplicação/API simulada
 
 A ideia da apresentação é clara: em produção, Filebeat rodaria em várias máquinas; neste laboratório, um único host Linux simula servidor central e cliente gerador de logs usando containers separados.
 
@@ -97,10 +99,12 @@ input {
 }
 ```
 
-O pipeline trata dois tipos principais de log:
+O pipeline trata quatro tipos principais de log:
 
 - `nginx_access`: logs HTTP do Nginx;
-- `simulated_auth`: logs simulados de autenticação Linux/SSH.
+- `simulated_auth`: logs simulados de autenticação Linux/SSH;
+- `simulated_syslog`: logs simulados de sistema Linux;
+- `simulated_app`: logs JSON de aplicação/API simulada.
 
 Para logs HTTP, o Logstash usa o padrão `COMBINEDAPACHELOG`, compatível com o formato comum de logs Apache/Nginx:
 
@@ -380,10 +384,20 @@ Nginx demo:    http://localhost:8080
 ./scripts/generate_logs.sh
 ```
 
-Isso faz duas coisas:
+Isso faz quatro coisas:
 
-1. gera requisições HTTP no Nginx: `/`, `/login`, `/admin-falso`, `/erro-500`, rota inexistente;
-2. adiciona eventos SSH/sudo simulados em `sample-logs/auth.log`.
+1. gera requisições HTTP no Nginx: `/`, `/login`, `/admin-falso`, `/erro-500`, rotas inexistentes e alvos comuns de varredura;
+2. adiciona eventos SSH/sudo simulados em `sample-logs/auth.log`;
+3. adiciona eventos de sistema em `sample-logs/syslog.log`;
+4. adiciona eventos JSON de aplicação/API em `sample-logs/app.log`.
+
+Para deixar os gráficos do dashboard mais preenchidos durante a apresentação, gere também uma massa determinística de eventos distribuídos em 30 dias:
+
+```bash
+python3 scripts/generate_dashboard_demo_data.py
+```
+
+Esse script cria o índice `so-logs-demo-rich`, compatível com o Data View `so-logs-*`, com centenas de eventos simulados para enriquecer status HTTP, tipos de log e volume temporal.
 
 ## Verificar se está funcionando
 
@@ -451,6 +465,18 @@ Autenticação Linux/SSH:
 fields.log_type: "simulated_auth"
 ```
 
+Syslog simulado:
+
+```txt
+fields.log_type: "simulated_syslog"
+```
+
+Aplicação/API simulada:
+
+```txt
+fields.log_type: "simulated_app"
+```
+
 Falhas de senha:
 
 ```txt
@@ -502,9 +528,12 @@ docker compose down -v
 ├── logstash/pipeline/logstash.conf
 ├── nginx/default.conf
 ├── sample-logs/auth.log
+├── sample-logs/syslog.log
+├── sample-logs/app.log
 └── scripts/
     ├── setup.sh
     ├── generate_logs.sh
+    ├── generate_dashboard_demo_data.py
     ├── verify.sh
     ├── backup.sh
     └── restore.sh
